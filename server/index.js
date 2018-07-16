@@ -50,33 +50,33 @@ app.get(
   })
 );
 
-// function userLoggedIn(req, res, next) {
-//   if (req.user) {
-//     next();
-//   } else {
-//     res.redirect("http://localhost:3000");
-//   }
-// }
+function userLoggedIn(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect("http://localhost:3000");
+  }
+}
 
-// app.get("/", userLoggedIn, (req, res, next) => {
-//   res.send("Success!");
-// });
+app.get("/", userLoggedIn, (req, res, next) => {
+  res.send("Success!");
+});
 
-// app.get("/logout", userLoggedIn, (req, res, next) => {
-//   req.session.destroy();
-//   res.redirect("http://localhost:3000");
-// });
+app.get("/logout", userLoggedIn, (req, res, next) => {
+  req.session.destroy();
+  res.redirect("http://localhost:3000");
+});
 
-// app.get("/me", (req, res, next) => {
-//   const { user } = req;
-//   return res.status(200).json(user);
-// });
+app.get("/me", (req, res, next) => {
+  const { user } = req;
+  return res.status(200).json(user);
+});
 
 app.get("/api/events", eventsCtrl.getEvents);
 app.get("/api/events/:id", eventsCtrl.getAnEvent);
 app.post("/api/events", eventsCtrl.addEvent);
-// app.delete("/api/events/:id", eventsCtrl.deleteEvent);
-// app.put("/api/events/:id", eventsCtrl.updateEvent);
+app.delete("/api/events/:id", eventsCtrl.deleteEvent);
+app.put("/api/events/:id", eventsCtrl.updateEvent);
 
 const port = process.env.PORT || 3001;
 

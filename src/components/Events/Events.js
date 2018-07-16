@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getEvents, addEvent } from "../../redux/ducks/eventsReducer";
 
-import axios from "axios";
+// import axios from "axios";
 import "./Events.css";
 import Button from "@material-ui/core/Button";
 class Events extends Component {
@@ -49,8 +49,7 @@ class Events extends Component {
   }
 }
 
-const mapStateToProps = state => state;
-// ({ events, event }) => ({ ...events });
+const mapStateToProps = ({ events, event }) => ({ ...events });
 
 export default connect(
   mapStateToProps,
