@@ -10,17 +10,17 @@ export function getEvents() {
     payload: axios.get("/api/events")
   };
 }
-export function addEvent() {
+export function addEvent(obj) {
   return {
     type: ADD_EVENT,
-    payload: axios.post("/api/event", addEvent)
+    payload: axios.post("/api/events", obj)
   };
 }
 
 export function deleteEvent() {
   return {
     type: DELETE_EVENT,
-    payload: axios.delete("/api/event/:id")
+    payload: axios.delete("/api/events/:id")
   };
 }
 const initialState = {

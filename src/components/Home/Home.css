@@ -5,11 +5,11 @@
   margin: 0 auto;
   margin-top: 50px;
   position: relative;
-  width: 55%;
-  height: 50%;
-  padding-bottom: 38%;
+  width: 65%;
+  height: 60%;
+  padding-bottom: 43%;
   background-color: blue;
-  border: solid 10px black;
+  border: solid 4px black;
 }
 .bodyimage {
   background-size: contain;

@@ -6,36 +6,62 @@ import {
   deleteEvent
 } from "../../redux/ducks/eventsReducer";
 import ModalForm from "../ModalForm/ModalForm";
+// import ModifyEvents from "../ModifyEvents/ModifyEvents";
+import Calendar from "react-calendar";
 // import axios from "axios";
 import "./Events.css";
-import Calendar from "react-calendar";
-import { Button, Dropdown } from "semantic-ui-react";
+import {
+  Button,
+  Dropdown,
+  Dimmer,
+  Loader,
+  Image,
+  Segment,
+  Icon
+} from "semantic-ui-react";
 
 class Events extends Component {
   componentDidMount() {
     this.props.getEvents();
-    this.props.addEvent();
   }
 
   render() {
-    const options = [
-      { key: "edit", icon: "edit", text: "Edit Post", value: "edit" },
-      { key: "delete", icon: "delete", text: "Remove Post", value: "delete" }
-    ];
-
     const { isLoading, events } = this.props;
     // console.log(props);
     const eventsDisplay = isLoading ? (
-      <p>Loading......</p>
+      <div>
+        <Segment>
+          <Dimmer active>
+            <Loader>Loading</Loader>
+          </Dimmer>
+        </Segment>
+      </div>
     ) : (
       events.map(events => {
         return (
-          <div className="list">
+          <div className="box">
             <div className="caretdown">
-              <Button.Group color="teal">
-                <Button>Save</Button>
-                <Dropdown options={options} floating button className="icon" />
-              </Button.Group>
+              <div>
+                <Button.Group color="teal">
+                  <Button>Modify</Button>
+                  <Dropdown floating button className="icon">
+                    <Dropdown.Menu>
+                      <Dropdown.Item>
+                        <Icon name="edit" type="submit" />
+                        <span className="text">Edit Post</span>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        <Icon
+                          name="delete"
+                          type="submit"
+                          onClick={() => this.props.deleteEvent({})}
+                        />
+                        <span className="text">Delete Post</span>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Button.Group>
+              </div>
             </div>
             <p>
               <div className="imagecontainer">
@@ -72,5 +98,5 @@ const mapStateToProps = ({ events, event }) => ({ ...events });
 
 export default connect(
   mapStateToProps,
-  { getEvents, addEvent }
+  { getEvents, addEvent, deleteEvent }
 )(Events);

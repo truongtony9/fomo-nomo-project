@@ -10,11 +10,11 @@
   margin: 0 auto;
 }
 
-.list {
+.box {
   box-sizing: border-box;
   background-color: white;
   border: 2px solid black;
-  width: 450px;
+  width: 425px;
   height: 450px;
   display: flex;
   flex-direction: column;
