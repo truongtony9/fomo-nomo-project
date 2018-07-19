@@ -5,7 +5,7 @@ import { getUser } from "../../redux/ducks/usersReducer";
 // import routes from "../../routes";
 // import axios from "axios";
 
-// import AccountCircle from "@material-ui/icons/AccountCircle";
+import { Input, Menu, Dropdown } from "semantic-ui-react";
 import logoimg from "../../logoimg.png";
 import "./Navbar.css";
 
@@ -16,6 +16,7 @@ class Navbar extends Component {
 
   render() {
     const { user } = this.props;
+
     return (
       <Router>
         <div>
@@ -25,19 +26,48 @@ class Navbar extends Component {
                 <img src={logoimg} className="logo" alt="logoimg" />
               </Link>
             </div>
-            <div className="rightnavauth">
-              {user ? (
-                <a href="http://localhost:3001/logout">Logout</a>
-              ) : (
-                <a href="http://localhost:3001/login">Login</a>
-              )}
-              {user && (
-                <div className="rightnavbar">
+            <div className="navbar">
+              <Menu secondary>
+                <Menu.Item name="Home">
                   <Link to="/">Home</Link>
+                </Menu.Item>
+                <Menu.Item name="Events">
                   <Link to="/events">Events</Link>
+                </Menu.Item>
+                <Menu.Item name="Messages">
                   <Link to="/messages">Messages</Link>
-                </div>
-              )}
+                </Menu.Item>
+                <Menu.Menu position="right">
+                  <Menu.Item>
+                    <Input icon="search" placeholder="Search..." />
+                  </Menu.Item>
+                  <Menu.Item name="logout">
+                    {user ? (
+                      <a href="http://localhost:3001/logout">
+                        <Dropdown
+                          text="Logout"
+                          icon="user"
+                          floating
+                          labeled
+                          button
+                          className="icon"
+                        />
+                      </a>
+                    ) : (
+                      <a href="http://localhost:3001/login">
+                        <Dropdown
+                          text="Login"
+                          icon="user"
+                          floating
+                          labeled
+                          button
+                          className="icon"
+                        />
+                      </a>
+                    )}
+                  </Menu.Item>
+                </Menu.Menu>
+              </Menu>
             </div>
           </nav>
         </div>

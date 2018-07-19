@@ -1,34 +1,99 @@
 .bodycontainer {
   /* background-color: aqua; */
 }
+.sidebyside {
+  margin: 0 auto;
+  margin-top: 50px;
+  position: relative;
+  width: 55%;
+  height: 50%;
+  padding-bottom: 38%;
+  background-color: blue;
+  border: solid 10px black;
+}
 .bodyimage {
   background-size: contain;
   background-image: url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=37c91c8e3f63462e0739c676dfe8fee8&auto=format&fit=crop&w=1950&q=80");
-  width: 40vw;
-  height: 46vh;
-  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /* display: flex;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
+  /* width: 40vw;
+  height: 46vh; */
 }
 .bodyimage2 {
   background-size: contain;
   background-image: url("https://images.unsplash.com/photo-1466686606061-5b5fd8310160?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c235142536989f4926dd57145604d242&auto=format&fit=crop&w=1950&q=80");
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40vw;
-  height: 46vh;
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
-.sidebyside {
-  display: flex;
-}
-.bodytext {
-  /* box-sizing: border-box;
-  border: 5px solid black; */
+.bodyimage3 {
+  background-size: contain;
+  background-image: url("https://images.unsplash.com/photo-1455734729978-db1ae4f687fc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c391a28620658e1a99824868a8e00566&auto=format&fit=crop&w=1950&q=80");
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
+#i1,
+#i2,
+#i3 {
+  display: none;
+}
+
+.pre,
+.nxt {
+  width: 6%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: rgba(88, 88, 88, 0.4);
+  z-index: 99;
+  cursor: pointer;
+}
+.pre {
+  left: 0;
+}
+.nxt {
+  right: 0;
+}
+.slide {
+  width: 100%;
+  height: 11px;
+  bottom: 12%;
+  position: absolute;
+  text-align: center;
+  z-index: 99;
+}
+.dots {
+  top: -5px;
+  width: 18px;
+  height: 18px;
+  margin: 0 4px;
+  border-radius: 50%;
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+.bodyimage,
+.bodyimage2,
+.bodyimage3 {
+  z-index: -1;
+}
+#i1:checked ~ #one,
+#i2:checked ~ #two,
+#i3:checked ~ #three {
+  z-index: 9;
+}
+#i1:checked ~ .slide #dot1,
+#i2:checked ~ .slide #dot2,
+#i3:checked ~ .slide #dot3 {
+  background: #fff;
+}
 .footer {
-  position: fixed;
   display: flex;
   justify-content: space-around;
   align-items: center;

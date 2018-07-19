@@ -5,6 +5,7 @@ import routes from "./routes";
 
 import store from "./redux/store";
 import Navbar from "./components/Navbar/Navbar";
+import Widget from "./components/Chat/Chat";
 
 import "./App.css";
 
@@ -18,6 +19,7 @@ class App extends Component {
               <Navbar />
             </div>
             <div className="">{routes}</div>
+            <Widget />
           </div>
         </Router>
       </Provider>

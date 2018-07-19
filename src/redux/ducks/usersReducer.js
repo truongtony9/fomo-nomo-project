@@ -10,19 +10,16 @@ export function getUser() {
 }
 
 const initialState = {
-  user: [],
-  isLoading: false,
-  error: ""
+  user: {},
+  isAuth: false
 };
 
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
-    case "GET_USER_PENDING":
-      return { ...state, isLoading: true };
     case "GET_USER_FULFILLED":
-      return { ...state, isLoading: false, user: action.payload.data };
+      return { ...state, user: action.payload.data, isAuth: true };
     case "GET_USER_REJECTED":
-      return { ...state, isLoading: true, error: action.payload };
+      return { ...state, isAuth: false };
     default:
       return state;
   }

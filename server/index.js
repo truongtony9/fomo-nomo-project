@@ -35,6 +35,22 @@ app.use(passport.session());
 passport.use(strategy);
 
 passport.serializeUser((user, done) => {
+  // console.log(user);
+  const db = app.get("db");
+  // db.getUserFromAuthid([user.userid])
+  //   .then(response => {
+  //     if (!response[0]) {
+  //       db.addUserFromAuthid([
+  //         user.displayName,
+  //         user.id,
+  //         user.picture,
+  //         user.emails[0].value
+  //       ])
+  //         .then(res => done(null, res[0]))
+  //         .catch(err => console.log(err));
+  //     } else return done(null, response[0]);
+  //   })
+  //   .catch(err => console.log(err));
   return done(null, user);
 });
 passport.deserializeUser((user, done) => {
@@ -59,7 +75,7 @@ function userLoggedIn(req, res, next) {
 }
 
 app.get("/", userLoggedIn, (req, res, next) => {
-  res.send("Success!");
+  res.send("Log In Successful");
 });
 
 app.get("/logout", userLoggedIn, (req, res, next) => {

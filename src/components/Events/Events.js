@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getEvents, addEvent } from "../../redux/ducks/eventsReducer";
-
+import {
+  getEvents,
+  addEvent,
+  deleteEvent
+} from "../../redux/ducks/eventsReducer";
+import ModalForm from "../ModalForm/ModalForm";
 // import axios from "axios";
 import "./Events.css";
-import Button from "@material-ui/core/Button";
+import Calendar from "react-calendar";
+import { Button, Dropdown } from "semantic-ui-react";
+
 class Events extends Component {
   componentDidMount() {
     this.props.getEvents();
@@ -12,16 +18,29 @@ class Events extends Component {
   }
 
   render() {
+    const options = [
+      { key: "edit", icon: "edit", text: "Edit Post", value: "edit" },
+      { key: "delete", icon: "delete", text: "Remove Post", value: "delete" }
+    ];
+
     const { isLoading, events } = this.props;
     // console.log(props);
     const eventsDisplay = isLoading ? (
-      <p>Loading...</p>
+      <p>Loading......</p>
     ) : (
       events.map(events => {
         return (
           <div className="list">
+            <div className="caretdown">
+              <Button.Group color="teal">
+                <Button>Save</Button>
+                <Dropdown options={options} floating button className="icon" />
+              </Button.Group>
+            </div>
             <p>
-              <img className="listimage" src={events.image_url} />
+              <div className="imagecontainer">
+                <img className="listimage" src={events.image_url} />
+              </div>
             </p>
             <p>Title: {events.title}</p>
             <p>Description: {events.description}</p>
@@ -34,16 +53,16 @@ class Events extends Component {
     );
     return (
       <div>
-        <div className="displayevents">{eventsDisplay}</div>
-        <Button variant="raised" color="primary">
-          Create New Event
-        </Button>
-        <Button variant="raised" color="primary">
-          Update Event
-        </Button>
-        <Button variant="raised" color="primary">
-          Delete Event
-        </Button>
+        <div className="container">
+          <div className="displayevents">{eventsDisplay}</div>
+
+          <div className="createbutton">
+            <ModalForm />
+            <div className="calendar">
+              <Calendar />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
