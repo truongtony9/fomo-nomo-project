@@ -7,6 +7,7 @@ const session = require("express-session");
 const passport = require("passport");
 const morgan = require("morgan");
 const eventsCtrl = require("./controllers/eventsCtrl");
+const userCtrl = require("./controllers/userCtrl");
 const strategy = require("./strategy");
 const path = require("path");
 
@@ -39,20 +40,20 @@ passport.use(strategy);
 passport.serializeUser((user, done) => {
   // console.log(user);
   const db = app.get("db");
-  // db.getUserFromAuthid([user.userid])
-  //   .then(response => {
-  //     if (!response[0]) {
-  //       db.addUserFromAuthid([
-  //         user.displayName,
-  //         user.id,
-  //         user.picture,
-  //         user.emails[0].value
-  //       ])
-  //         .then(res => done(null, res[0]))
-  //         .catch(err => console.log(err));
-  //     } else return done(null, response[0]);
-  //   })
-  //   .catch(err => console.log(err));
+  db.getUserFromAuthid([user.auth_id])
+    .then(response => {
+      if (!response[0]) {
+        db.addUserFromAuthid([
+          user.displayName,
+          user.id,
+          user.picture,
+          user.emails[0].value
+        ])
+          .then(res => done(null, res[0]))
+          .catch(err => console.log(err));
+      } else return done(null, response[0]);
+    })
+    .catch(err => console.log(err));
   return done(null, user);
 });
 passport.deserializeUser((user, done) => {
@@ -95,6 +96,8 @@ app.get("/api/events/:id", eventsCtrl.getAnEvent);
 app.post("/api/events", eventsCtrl.addEvent);
 app.delete("/api/events/:id", eventsCtrl.deleteEvent);
 app.put("/api/events/:id", eventsCtrl.updateEvent);
+
+app.get("/api/users/:id", userCtrl.getUser);
 
 const port = process.env.PORT || 3001;
 

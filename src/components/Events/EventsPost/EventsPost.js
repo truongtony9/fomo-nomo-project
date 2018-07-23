@@ -222,7 +222,11 @@ class EventsPost extends Component {
               </Button.Content>
             </Button>
             <Button
-              style={{ marginTop: "5px" }}
+              style={{
+                backgroundColor: "#17ea17",
+                color: "#fff",
+                marginTop: "5px"
+              }}
               type="submit"
               onClick={() => {
                 this.editToggle();

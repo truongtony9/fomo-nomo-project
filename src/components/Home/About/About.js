@@ -46,11 +46,12 @@ export default class About extends Component {
               <Card.Header>Meet the Team:</Card.Header>
               <Card.Header>Tony</Card.Header>
               <Card.Meta>
+                <span className="date">CE0 and Founder</span>
+                <br />
                 <span className="date">Born/Raised in Grand Rapids, MI</span>
               </Card.Meta>
               <Card.Description>
-                Tony is new to the web development community and aspiring to be
-                a software engineer.
+                blah blah blah blah blah blah blah blah blah blah blah blah
               </Card.Description>
             </Card.Content>
             <Card.Content extra>
