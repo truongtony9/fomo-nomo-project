@@ -1,2 +1,2 @@
 SELECT *
-from events;
+FROM events;

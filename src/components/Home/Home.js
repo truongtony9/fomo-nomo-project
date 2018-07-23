@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { HashRouter as Router, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getEvents } from "../../redux/ducks/eventsReducer";
 
@@ -31,22 +31,15 @@ class Home extends Component {
             <label className="dots" id="dot3" for="i3" />
           </div>
         </div>
-        <div className="bodytext">
-          <br />
-          <p>Do you have FOMO (Fear of Missing Out)?</p>
-          <p>
-            Sign up for FOMO-NOMO, stay updated on all events that are
-            happening. NO MO to the FOMO!
-          </p>
-          <p>Let's bring people, food, events, and good vibes together.</p>
-          <p>#NEVERMISSOUT</p>
-          <br />
-        </div>
-        <div className="footer">
-          <p>About</p>
-          <p>Disclaimer</p>
-          <p>Contact</p>
-        </div>
+        <Router>
+          <div className="footer">
+            <Link to="/about">About</Link>
+            <p>
+              Disclaimer: This website is for learning and testing purposes.
+            </p>
+            <Link to="/contact">Contact</Link>
+          </div>
+        </Router>
       </div>
     );
   }

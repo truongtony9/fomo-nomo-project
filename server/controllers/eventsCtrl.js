@@ -23,14 +23,23 @@ module.exports = {
   deleteEvent: (req, res, next) => {
     const db = req.app.get("db");
     const { id } = req.params;
+    // console.log(req.params);
     db.deleteEvent([id])
       .then(events => res.status(200).send(events))
       .catch(err => res.status(500).send({ showError: err }));
   },
   updateEvent: (req, res, next) => {
-    const { title, description, date, time, address, image_url } = req.body;
-    const { id } = req.params;
     const db = req.app.get("db");
+    let { id } = req.params;
+    const { title, description, date, time, address, image_url } = req.body;
+    console.log(id);
+    console.log(title);
+    console.log(description);
+    console.log(date);
+    console.log(time);
+    console.log(address);
+    console.log(image_url);
+
     db.updateEvent([id, title, description, date, time, address, image_url])
       .then(events => res.status(200).send(events))
       .catch(err => res.status(500).send({ showError: err }));

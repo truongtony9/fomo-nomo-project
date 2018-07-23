@@ -6,7 +6,7 @@ import { getUser } from "../../redux/ducks/usersReducer";
 // import axios from "axios";
 
 import { Input, Menu, Dropdown } from "semantic-ui-react";
-import logoimg from "../../logoimg.png";
+import fomologo from "../../fomologo.png";
 import "./Navbar.css";
 
 class Navbar extends Component {
@@ -23,7 +23,7 @@ class Navbar extends Component {
           <nav className="nav">
             <div>
               <Link to="/">
-                <img src={logoimg} className="logo" alt="logoimg" />
+                <img src={fomologo} className="logo" alt="logoimg" />
               </Link>
             </div>
             <div className="navbar">
@@ -35,7 +35,7 @@ class Navbar extends Component {
                   <Link to="/events">Events</Link>
                 </Menu.Item>
                 <Menu.Item name="Messages">
-                  <Link to="/messages">Messages</Link>
+                  <Link to="/messenger">Messenger</Link>
                 </Menu.Item>
                 <Menu.Menu position="right">
                   <Menu.Item>

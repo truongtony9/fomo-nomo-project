@@ -1,20 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  getEvents,
-  addEvent,
-  deleteEvent
-} from "../../redux/ducks/eventsReducer";
-import {
-  Button,
-  Header,
-  Image,
-  Modal,
-  Form,
-  Icon,
-  Dropdown
-} from "semantic-ui-react";
-import { open } from "fs";
+import { getEvents, addEvent } from "../../redux/ducks/eventsReducer";
+import { Button, Modal, Form, Dropdown } from "semantic-ui-react";
+// import { open } from "fs";
 
 class ModalForm extends Component {
   constructor(props) {
@@ -25,13 +13,9 @@ class ModalForm extends Component {
       date: "",
       time: "",
       address: "",
-      image_url: "",
-      open: false
+      image_url: ""
     };
   }
-  // componentDidMount() {
-  //   this.props.getEvents();
-  // }
   closeConfigShow = closeOnEscape => () => {
     this.setState({ closeOnEscape, open: true });
   };
@@ -44,9 +28,7 @@ class ModalForm extends Component {
       [e.target.name]: e.target.value
     });
   };
-  // onModalOpen = () => {
-  //   this.setState({ open: true });
-  // };
+
   render() {
     const {
       title,

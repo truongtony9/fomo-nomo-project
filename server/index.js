@@ -8,12 +8,14 @@ const passport = require("passport");
 const morgan = require("morgan");
 const eventsCtrl = require("./controllers/eventsCtrl");
 const strategy = require("./strategy");
+const path = require("path");
 
 const app = express();
 
 app.use(json());
 app.use(cors());
 app.use(morgan("tiny"));
+// app.use(express.static(`${__dirname}/../build`));
 
 massive(process.env.CONNECTION_STRING)
   .then(db => app.set("db", db))
@@ -95,6 +97,17 @@ app.delete("/api/events/:id", eventsCtrl.deleteEvent);
 app.put("/api/events/:id", eventsCtrl.updateEvent);
 
 const port = process.env.PORT || 3001;
+
+// const socketapp = require("http").createServer();
+// const io = (module.exports.io = require("socket.io")(socketapp));
+
+// const socketCtrl = require("./controllers/socketCtrl");
+
+// io.on("connection", socketCtrl);
+
+// app.get('*' (req, res) => {
+//   res.sendFile(path.join(__dirname, '../build/index.html'));
+// });
 
 app.listen(port, () => {
   console.log(`Server is listening at ${port}`);
