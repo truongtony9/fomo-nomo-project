@@ -1,9 +1,20 @@
-/* .cardone {
+.boxcontainer {
+  background-color: lightgray;
+  height: 92vh;
+}
+
+.aboutinfo {
+  box-sizing: border-box;
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  width: 700px;
+  height: 500px;
   display: flex;
-  margin-left: auto;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  padding: 50px;
   margin-right: auto;
-} */
-.body {
   margin-left: auto;
-  margin-right: auto;
 }

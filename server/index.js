@@ -40,20 +40,20 @@ passport.use(strategy);
 passport.serializeUser((user, done) => {
   // console.log(user);
   const db = app.get("db");
-  db.getUserFromAuthid([user.auth_id])
-    .then(response => {
-      if (!response[0]) {
-        db.addUserFromAuthid([
-          user.displayName,
-          user.id,
-          user.picture,
-          user.emails[0].value
-        ])
-          .then(res => done(null, res[0]))
-          .catch(err => console.log(err));
-      } else return done(null, response[0]);
-    })
-    .catch(err => console.log(err));
+  // db.getUserFromAuthid([user.auth_id])
+  //   .then(response => {
+  //     if (!response[0]) {
+  //       db.addUserFromAuthid([
+  //         user.displayName,
+  //         user.id,
+  //         user.picture,
+  //         user.emails[0].value
+  //       ])
+  //         .then(res => done(null, res[0]))
+  //         .catch(err => console.log(err));
+  //     } else return done(null, response[0]);
+  //   })
+  //   .catch(err => console.log(err));
   return done(null, user);
 });
 passport.deserializeUser((user, done) => {
@@ -97,7 +97,8 @@ app.post("/api/events", eventsCtrl.addEvent);
 app.delete("/api/events/:id", eventsCtrl.deleteEvent);
 app.put("/api/events/:id", eventsCtrl.updateEvent);
 
-app.get("/api/users/:id", userCtrl.getUser);
+// app.get("/api/users/:id", userCtrl.getUser);
+// app.post("/api/users/", userCtrl.addUserFromAuthid);
 
 const port = process.env.PORT || 3001;
 
