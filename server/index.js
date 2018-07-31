@@ -64,7 +64,7 @@ passport.deserializeUser((user, done) => {
 app.get(
   '/login',
   passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000',
+    successRedirect: 'process.env.REACT_APP_DEV_HOST',
     failureRedirect: '/login',
     failureFlash: true
   })
@@ -74,7 +74,7 @@ function authenticated(req, res, next) {
   if (req.user) {
     next();
   } else {
-    res.redirect('http://localhost:3000');
+    res.redirect('process.env.REACT_APP_DEV_HOST');
   }
 }
 
@@ -85,7 +85,7 @@ function authenticated(req, res, next) {
 
 app.get('/logout', authenticated, (req, res, next) => {
   req.session.destroy();
-  res.redirect('http://localhost:3000');
+  res.redirect('process.env.REACT_APP_DEV_HOST');
 });
 
 app.get('/', authenticated, (req, res, next) => {
