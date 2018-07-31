@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Card, Icon, Image, Grid } from "semantic-ui-react";
-import fomologo from "../../../fomologo.png";
-import profileavatar from "../../../profileavatar.png";
-import "./About.css";
+import React, { Component } from 'react';
+import { Card, Icon, Image, Grid } from 'semantic-ui-react';
+import fomologo from '../../../fomologo.png';
+import profileavatar from '../../../profileavatar.png';
+import './About.css';
 
 export default class About extends Component {
   render() {
@@ -54,6 +54,8 @@ export default class About extends Component {
               <Grid.Column width={3}>
                 <Card.Description>
                   <a>
+                    <h3>Tony's Social Media:</h3>
+                    <hr />
                     <Icon size="huge" name="facebook" />
                     <hr />
                     <Icon size="huge" name="instagram" />

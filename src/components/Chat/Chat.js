@@ -1,22 +1,20 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Widget,
   addResponseMessage,
   addLinkSnippet,
   addUserMessage
-} from "react-chat-widget";
+} from 'react-chat-widget';
 
-import "react-chat-widget/lib/styles.css";
+import 'react-chat-widget/lib/styles.css';
 
 class Chat extends Component {
   componentDidMount() {
-    addResponseMessage("Welcome to FOMO-NOMO!");
+    addResponseMessage('Welcome to FOMO-NOMO!');
   }
 
   handleNewUserMessage = newMessage => {
-    console.log(`New message incoming! ${newMessage}`);
-    // Now send the message throught the backend API
-    // addResponseMessage(response);
+    addResponseMessage(newMessage);
   };
   render() {
     return (

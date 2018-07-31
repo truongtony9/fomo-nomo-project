@@ -1,17 +1,19 @@
-import React, { Component } from "react";
-import { HashRouter as Router, Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { getUser } from "../../redux/ducks/usersReducer";
-import routes from "../../routes";
+import React, { Component } from 'react';
+import { HashRouter as Router, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getCurrentUser } from '../../redux/ducks/usersReducer';
+import routes from '../../routes';
 // import axios from "axios";
 
-import { Input, Menu, Dropdown } from "semantic-ui-react";
-import fomologo from "../../fomologo.png";
-import "./Navbar.css";
+import { Input, Menu, Dropdown } from 'semantic-ui-react';
+import fomologo from '../../fomologo.png';
+import './Navbar.css';
 
 class Navbar extends Component {
   componentDidMount() {
-    this.props.getUser();
+    this.props.getCurrentUser().then(() => {
+      console.log(this.props.user);
+    });
   }
 
   render() {
@@ -29,7 +31,7 @@ class Navbar extends Component {
             <div className="navbar">
               <Menu secondary>
                 <Menu.Item name="logout">
-                  {user ? (
+                  {user.displayName ? (
                     <a href="http://localhost:3001/logout">
                       <Dropdown
                         text="Logout"
@@ -82,7 +84,7 @@ class Navbar extends Component {
 const mapStateToProps = ({ user }) => ({ ...user });
 export default connect(
   mapStateToProps,
-  { getUser }
+  { getCurrentUser }
 )(Navbar);
 
 // {user && ()}

@@ -1,17 +1,18 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import axios from "axios";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
 import {
   getEvents,
   addEvent,
   deleteEvent,
   updateEvent
-} from "../../redux/ducks/eventsReducer";
-import EventsPost from "./EventsPost/EventsPost";
-import ModalForm from "../ModalForm/ModalForm";
-import Calendar from "react-calendar";
+} from '../../redux/ducks/eventsReducer';
+import { getCurrentUser } from '../../redux/ducks/usersReducer';
+import EventsPost from './EventsPost/EventsPost';
+import ModalForm from '../ModalForm/ModalForm';
+import Calendar from 'react-calendar';
 
-import "./Events.css";
+import './Events.css';
 import {
   Button,
   Dropdown,
@@ -20,15 +21,15 @@ import {
   Segment,
   Icon,
   TextArea
-} from "semantic-ui-react";
+} from 'semantic-ui-react';
 
 class Events extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
+      id: '',
       events: [],
-      input: "",
+      input: '',
       toggle: false,
       edit: false,
       title: this.props.events.title,
@@ -36,11 +37,13 @@ class Events extends Component {
       date: this.props.events.date,
       time: this.props.events.time,
       address: this.props.events.address,
-      image_url: this.props.events.image_url
+      image_url: this.props.events.image_url,
+      userid: this.props.events.userid
     };
   }
   componentDidMount() {
     this.props.getEvents();
+    this.props.getCurrentUser();
   }
 
   render() {
@@ -53,7 +56,10 @@ class Events extends Component {
       address,
       image_url,
       isLoading,
-      events
+      events,
+      userid,
+      users,
+      user_name
     } = this.props;
     // console.log(props);
 
@@ -76,6 +82,7 @@ class Events extends Component {
             time={events.time}
             address={events.address}
             image={events.image_url}
+            eventcreator={events.user_name}
           />
         );
       })
@@ -100,9 +107,9 @@ class Events extends Component {
   }
 }
 
-const mapStateToProps = ({ events, event }) => ({ ...events });
+const mapStateToProps = ({ events, event, users }) => ({ ...events, ...users });
 
 export default connect(
   mapStateToProps,
-  { getEvents, addEvent, deleteEvent, updateEvent }
+  { getEvents, addEvent, deleteEvent, updateEvent, getCurrentUser }
 )(Events);

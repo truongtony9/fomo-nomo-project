@@ -1,12 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import axios from "axios";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
 import {
   getEvents,
   getAnEvent,
   deleteEvent,
   updateEvent
-} from "../../../redux/ducks/eventsReducer";
+} from '../../../redux/ducks/eventsReducer';
+import { getCurrentUser } from '../../../redux/ducks/usersReducer';
 import {
   Button,
   Dropdown,
@@ -15,32 +16,35 @@ import {
   Segment,
   Icon,
   TextArea
-} from "semantic-ui-react";
-import "./EventsPost.css";
+} from 'semantic-ui-react';
 
 class EventsPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
+      id: '',
       events: [],
-      titleinput: "",
-      descriptioninput: "",
-      dateinput: "",
-      timeinput: "",
-      addressinput: "",
-      image_urlinput: "",
+      titleinput: '',
+      descriptioninput: '',
+      dateinput: '',
+      timeinput: '',
+      addressinput: '',
+      image_urlinput: '',
       toggle: false,
       edit: false,
-      title: "",
-      description: "",
-      date: "",
-      time: "",
-      address: "",
-      image_url: ""
+      title: '',
+      description: '',
+      date: '',
+      time: '',
+      address: '',
+      image_url: ''
     };
   }
   componentDidMount() {
+    // this.props.getCurrentUser().then(() => {
+    //   console.log(this.props.user);
+    // });
+
     let {
       id,
       title,
@@ -49,7 +53,10 @@ class EventsPost extends Component {
       time,
       address,
       image_url,
-      isLoading
+      isLoading,
+      user_id,
+      user_name,
+      user
     } = this.props;
     this.setState({
       id,
@@ -58,7 +65,9 @@ class EventsPost extends Component {
       date,
       time,
       address,
-      image_url
+      image_url,
+      user_id,
+      user_name
     });
   }
   // onChangeHandler = e => {
@@ -91,7 +100,7 @@ class EventsPost extends Component {
   };
 
   inputHandler = e => {
-    let inputName = e.target.name + "input";
+    let inputName = e.target.name + 'input';
     console.log(e.target.name, e.target.value);
 
     this.setState({ inputName: e.target.value });
@@ -133,6 +142,7 @@ class EventsPost extends Component {
     //   isLoading,
     //   events
     // } = this.props;
+    console.log(this.props.events[0].user_name);
 
     const { edit } = this.state;
     let editToggle;
@@ -148,6 +158,7 @@ class EventsPost extends Component {
           <p>Date: {this.props.date}</p>
           <p>Time: {this.props.time}</p>
           <p>Address: {this.props.address}</p>
+          <p>Event Creator: {this.props.events[0].user_name}</p>
         </div>
       );
     } else {
@@ -209,23 +220,23 @@ class EventsPost extends Component {
           <div className="toggle-btns">
             <Button
               style={{
-                backgroundColor: "#DC3545",
-                color: "#fff",
-                marginTop: "5px"
+                backgroundColor: '#DC3545',
+                color: '#fff',
+                marginTop: '5px'
               }}
               onClick={() => this.editToggle()}
               animated="vertical"
             >
               <Button.Content hidden>Cancel</Button.Content>
               <Button.Content visible>
-                <Icon style={{ color: "#fff" }} name="cancel" />
+                <Icon style={{ color: '#fff' }} name="cancel" />
               </Button.Content>
             </Button>
             <Button
               style={{
-                backgroundColor: "#17ea17",
-                color: "#fff",
-                marginTop: "5px"
+                backgroundColor: '#17ea17',
+                color: '#fff',
+                marginTop: '5px'
               }}
               type="submit"
               onClick={() => {
@@ -295,9 +306,9 @@ class EventsPost extends Component {
   }
 }
 
-const mapStateToProps = ({ events, event }) => ({ ...events });
+const mapStateToProps = ({ events, event, users }) => ({ ...events, ...users });
 
 export default connect(
   mapStateToProps,
-  { getEvents, deleteEvent, updateEvent }
+  { getEvents, deleteEvent, updateEvent, getCurrentUser }
 )(EventsPost);

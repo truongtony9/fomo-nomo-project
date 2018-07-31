@@ -1,2 +1,3 @@
 SELECT *
-from users;
+FROM events
+WHERE userid = $1;

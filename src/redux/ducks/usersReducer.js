@@ -1,25 +1,26 @@
-import axios from "axios";
+import axios from 'axios';
 
-const GET_USER = "GET_USER";
+const GET_USER = 'GET_USER';
 
-export function getUser() {
+export function getCurrentUser() {
   return {
     type: GET_USER,
-    payload: axios.get("/me")
+    payload: axios.get('/api/me')
   };
 }
 
 const initialState = {
-  user: {},
+  user: [],
   isAuth: false
 };
 
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
-    case "GET_USER_FULFILLED":
+    case 'GET_USER_FULFILLED':
       return { ...state, user: action.payload.data, isAuth: true };
-    case "GET_USER_REJECTED":
+    case 'GET_USER_REJECTED':
       return { ...state, isAuth: false };
+
     default:
       return state;
   }

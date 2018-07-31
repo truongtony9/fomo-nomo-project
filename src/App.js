@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { HashRouter as Router } from "react-router-dom";
-import { Provider } from "react-redux";
-import routes from "./routes";
+import React, { Component } from 'react';
+import { HashRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import routes from './routes';
 
-import store from "./redux/store";
-import Navbar from "./components/Navbar/Navbar";
-import Widget from "./components/Chat/Chat";
+import store from './redux/store';
+import Navbar from './components/Navbar/Navbar';
+import Widget from './components/Chat/Chat';
 
-import "./App.css";
+import './App.css';
 
 class App extends Component {
   render() {
@@ -19,7 +19,7 @@ class App extends Component {
               <Navbar />
             </div>
             <div className="">{routes}</div>
-            <Widget />
+            {/* <Widget /> */}
           </div>
         </Router>
       </Provider>
