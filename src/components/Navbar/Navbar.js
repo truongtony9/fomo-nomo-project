@@ -32,7 +32,7 @@ class Navbar extends Component {
               <Menu secondary>
                 <Menu.Item name="logout">
                   {user.displayName ? (
-                    <a href="process.env.REACT_APP_LOGOUT">
+                    <a href={process.env.REACT_APP_LOGOUT}>
                       <Dropdown
                         text="Logout"
                         icon="user"
@@ -43,7 +43,7 @@ class Navbar extends Component {
                       />
                     </a>
                   ) : (
-                    <a href="process.env.REACT_APP_LOGIN">
+                    <a href={process.env.REACT_APP_LOGIN}>
                       <Dropdown
                         text="Login"
                         icon="user"
