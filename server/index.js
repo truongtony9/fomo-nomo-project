@@ -17,7 +17,7 @@ const app = express();
 app.use(json());
 app.use(cors());
 app.use(morgan('tiny'));
-// app.use(express.static(`${__dirname}/../build`));
+app.use(express.static(`${__dirname}/../build`));
 
 massive(process.env.CONNECTION_STRING)
   .then(db => app.set('db', db))
@@ -104,9 +104,9 @@ app.get('/api/me', userCtrl.getCurrentUser);
 
 const port = process.env.PORT || 3001;
 
-// app.get('*' (req, res) => {
-//   res.sendFile(path.join(__dirname, '../build/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 portServer = app.listen(port, () => {
   console.log(`Server is listening at ${port}`);
