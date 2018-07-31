@@ -104,13 +104,6 @@ app.get('/api/me', userCtrl.getCurrentUser);
 
 const port = process.env.PORT || 3001;
 
-// const socketapp = require("http").createServer();
-// const io = (module.exports.io = require("socket.io")(socketapp));
-
-// const socketCtrl = require("./controllers/socketCtrl");
-
-// io.on("connection", socketCtrl);
-
 // app.get('*' (req, res) => {
 //   res.sendFile(path.join(__dirname, '../build/index.html'));
 // });
