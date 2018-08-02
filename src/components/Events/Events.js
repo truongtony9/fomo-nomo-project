@@ -23,6 +23,34 @@ import {
   TextArea
 } from 'semantic-ui-react';
 
+import styled, { css } from 'react-emotion';
+const PageLayout = styled('div')`
+  display: grid;
+  grid-template-columns: 70% 30%;
+`;
+const DisplayEvents = styled('div')`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+`;
+const CalendarAndCreateB = styled('div')`
+  display: flex;
+  align-items: center;
+  margin: 8px auto;
+  border: 2px solid black;
+  background-color: black;
+  width: 375px;
+  height: 375px;
+`;
+const CreateButton = styled('div')`
+  margin: 5px auto;
+`;
+const CalendarBox = styled('div')`
+  box-sizing: border-box;
+  color: white;
+`;
+
 class Events extends Component {
   constructor(props) {
     super(props);
@@ -90,18 +118,18 @@ class Events extends Component {
 
     return (
       <div>
-        <div className="container">
-          <div className="displayevents">{eventsDisplay}</div>
-          <div className="createandcalendar">
-            <div className="createbutton">
+        <PageLayout>
+          <DisplayEvents>{eventsDisplay}</DisplayEvents>
+          <CalendarAndCreateB>
+            <CreateButton>
               <ModalForm />
               <hr />
-              <div className="calendar">
+              <CalendarBox>
                 <Calendar />
-              </div>
-            </div>
-          </div>
-        </div>
+              </CalendarBox>
+            </CreateButton>
+          </CalendarAndCreateB>
+        </PageLayout>
       </div>
     );
   }

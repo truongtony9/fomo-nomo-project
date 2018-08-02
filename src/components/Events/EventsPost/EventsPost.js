@@ -17,6 +17,41 @@ import {
   Icon,
   TextArea
 } from 'semantic-ui-react';
+import styled, { css } from 'react-emotion';
+
+const EventInputs = styled('div')`
+  display: flex;
+  flex-direction: column;
+`;
+const Box = styled('div')`
+  box-sizing: border-box;
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  width: 425px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 0.8em;
+  padding: 10px;
+  margin: 8px 8px 8px 8px;
+`;
+const CaretDown = styled('div')`
+  display: flex;
+  margin-bottom: 5px;
+`;
+const ImageContainer = styled('div')`
+  margin-top: 0;
+  position: relative;
+  width: 400px;
+  height: 225px;
+  padding-bottom: 20%;
+  background-color: black;
+  border: solid 1px black;
+  margin-right: auto;
+  margin-left: auto;
+`;
 
 class EventsPost extends Component {
   constructor(props) {
@@ -150,9 +185,9 @@ class EventsPost extends Component {
     if (!edit) {
       editToggle = (
         <div className="">
-          <div className="imagecontainer">
+          <ImageContainer>
             <img className="listimage" src={this.props.image} />
-          </div>
+          </ImageContainer>
           <p>Title: {this.props.title}</p>
           <p>Description: {this.props.description}</p>
           <p>Date: {this.props.date}</p>
@@ -164,10 +199,10 @@ class EventsPost extends Component {
     } else {
       editToggle = (
         <div className="toggletext">
-          <div className="imagecontainer">
+          <ImageContainer>
             <img className="listimage" src={this.state.image} />
-          </div>
-          <div className="eventinputs">
+          </ImageContainer>
+          <EventInputs>
             <input
               name="titleinput"
               id="eventpost"
@@ -216,7 +251,7 @@ class EventsPost extends Component {
               // onChange={event => this.inputHandler(event)}
               onChange={this.onChangeInput}
             />
-          </div>
+          </EventInputs>
           <div className="toggle-btns">
             <Button
               style={{
@@ -263,8 +298,8 @@ class EventsPost extends Component {
       );
     }
     return (
-      <div className="box">
-        <div className="caretdown">
+      <Box>
+        <CaretDown>
           <div>
             <Button.Group color="teal">
               <Button>Modify</Button>
@@ -299,9 +334,9 @@ class EventsPost extends Component {
               </Dropdown>
             </Button.Group>
           </div>
-        </div>
+        </CaretDown>
         {editToggle}
-      </div>
+      </Box>
     );
   }
 }

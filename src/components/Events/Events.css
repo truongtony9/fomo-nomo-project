@@ -1,4 +1,4 @@
-.calendar {
+/* .calendar {
   box-sizing: border-box;
   color: white;
 }
@@ -23,9 +23,6 @@
   font-size: 0.8em;
   padding: 10px;
   margin: 8px 8px 8px 8px;
-  /* margin-right: auto; */
-  /* margin-left: auto; */
-  /* margin-bottom: auto; */
 }
 .imagecontainer {
   margin-top: 0;
@@ -37,7 +34,7 @@
   border: solid 1px black;
   margin-right: auto;
   margin-left: auto;
-}
+} */
 .listimage {
   background-size: contain;
   display: flex;
@@ -45,7 +42,7 @@
   height: 100%;
   position: absolute;
 }
-.forminput {
+/* .forminput {
   width: 200px;
   height: 20px;
   font-size: 0.1em;
@@ -53,7 +50,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin: 4px 4px 4px 4px;
-  /* margin-right: 20%; */
 }
 .caretdown {
   display: flex;
@@ -74,4 +70,4 @@
   background-color: black;
   width: 375px;
   height: 375px;
-}
+} */

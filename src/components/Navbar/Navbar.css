@@ -1,4 +1,4 @@
-.nav {
+/* .nav {
   background-color: black;
   color: white;
   height: 8vh;
@@ -6,13 +6,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-/* .rightnavbar a {
-  text-decoration: none;
-  color: white;
-  display: inline-block;
-  margin: 20px;
 } */
+
 .logo {
   width: 40%;
   height: 40%;
@@ -27,7 +22,7 @@
 .buttons {
   margin: 10px;
 }
-.navbar a {
+/* .navbar a {
   text-decoration: none;
   color: white;
-}
+} */

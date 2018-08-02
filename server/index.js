@@ -10,7 +10,6 @@ const eventsCtrl = require('./controllers/eventsCtrl');
 const userCtrl = require('./controllers/userCtrl');
 const strategy = require('./strategy');
 const path = require('path');
-const socket = require('socket.io');
 
 const app = express();
 
@@ -64,7 +63,7 @@ passport.deserializeUser((user, done) => {
 app.get(
   '/login',
   passport.authenticate('auth0', {
-    successRedirect: 'process.env.REACT_APP_DEV_HOST',
+    successRedirect: process.env.REACT_APP_DEV_HOST,
     failureRedirect: '/login',
     failureFlash: true
   })
@@ -74,7 +73,7 @@ function authenticated(req, res, next) {
   if (req.user) {
     next();
   } else {
-    res.redirect('process.env.REACT_APP_DEV_HOST');
+    res.redirect(process.env.REACT_APP_DEV_HOST);
   }
 }
 
@@ -85,7 +84,7 @@ function authenticated(req, res, next) {
 
 app.get('/logout', authenticated, (req, res, next) => {
   req.session.destroy();
-  res.redirect('process.env.REACT_APP_DEV_HOST');
+  res.redirect(process.env.REACT_APP_DEV_HOST);
 });
 
 app.get('/', authenticated, (req, res, next) => {
@@ -108,26 +107,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
-portServer = app.listen(port, () => {
+app.listen(port, () => {
   console.log(`Server is listening at ${port}`);
-});
-
-const io = socket(portServer);
-
-io.on('connection', socket => {
-  console.log(socket.id);
-
-  socket.on('SEND_MESSAGE', function(data) {
-    io.emit('RECEIVE_MESSAGE', data);
-  });
-  socket.on('USER_CONNECTED', function(name) {
-    // console.log(name.name);
-    var chatUser = name.name;
-    io.emit('THE_USER_CONNECTED', name);
-    socket.on('disconnect', function() {
-      console.log(chatUser);
-      // let leaving = "Someone has left.";
-      io.sockets.emit('disconnected', chatUser);
-    });
-  });
 });

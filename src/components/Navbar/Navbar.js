@@ -9,6 +9,21 @@ import { Input, Menu, Dropdown } from 'semantic-ui-react';
 import fomologo from '../../fomologo.png';
 import './Navbar.css';
 
+import styled, { css } from 'react-emotion';
+const Nav = styled('div')`
+  background-color: black;
+  color: white;
+  height: 8vh;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const NavbarLog = css`
+  text-decoration: none;
+  color: white;
+`;
+
 class Navbar extends Component {
   componentDidMount() {
     this.props.getCurrentUser().then(() => {
@@ -22,17 +37,17 @@ class Navbar extends Component {
     return (
       <Router>
         <div>
-          <nav className="nav">
+          <Nav>
             <div>
               <Link to="/">
                 <img src={fomologo} className="logo" alt="logoimg" />
               </Link>
             </div>
-            <div className="navbar">
+            <div>
               <Menu secondary>
                 <Menu.Item name="logout">
-                  {user.displayName ? (
-                    <a href="process.env.REACT_APP_LOGOUT">
+                  {user ? (
+                    <a href="http://localhost:3001/logout">
                       <Dropdown
                         text="Logout"
                         icon="user"
@@ -43,7 +58,7 @@ class Navbar extends Component {
                       />
                     </a>
                   ) : (
-                    <a href="process.env.REACT_APP_LOGIN">
+                    <a href="http://localhost:3001/login">
                       <Dropdown
                         text="Login"
                         icon="user"
@@ -58,13 +73,19 @@ class Navbar extends Component {
                 {user && (
                   <Menu.Menu position="right">
                     <Menu.Item name="Home">
-                      <Link to="/">Home</Link>
+                      <Link className={NavbarLog} to="/">
+                        Home
+                      </Link>
                     </Menu.Item>
                     <Menu.Item name="Events">
-                      <Link to="/events">Events</Link>
+                      <Link className={NavbarLog} to="/events">
+                        Events
+                      </Link>
                     </Menu.Item>
                     <Menu.Item name="Messages">
-                      <Link to="/messenger">Messenger</Link>
+                      <Link className={NavbarLog} to="/messenger">
+                        Messenger
+                      </Link>
                       <Menu.Item>
                         <Input icon="search" placeholder="Search..." />
                       </Menu.Item>
@@ -73,7 +94,7 @@ class Navbar extends Component {
                 )}
               </Menu>
             </div>
-          </nav>
+          </Nav>
           {/* {user && routes} */}
         </div>
       </Router>
@@ -86,5 +107,3 @@ export default connect(
   mapStateToProps,
   { getCurrentUser }
 )(Navbar);
-
-// {user && ()}
